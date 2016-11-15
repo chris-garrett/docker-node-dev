@@ -1,9 +1,9 @@
 # docker-node-dev
 
-* Node development image based on alpine-node 6.9.1
+* Node development image based on alpine-node ${VERSION}
 
 ## Versions
-- alpine-node 6.9.1
+- alpine-node ${VERSION}
 
 ## Usage
 
