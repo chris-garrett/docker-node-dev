@@ -1,16 +1,16 @@
-FROM mhart/alpine-node:${VERSION}
+FROM chrisgarrett/node:${VERSION}
 MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
 LABEL description="Node development image based on alpine-node ${VERSION}"
-RUN apk --no-cache add \
+USER root
+RUN apk --no-cache add --update \
   git \
-  bash \
   make \
-  curl \
   build-base \
   automake \
   autoconf \
   nasm \
   libpng-dev
-RUN npm i cross-env
+RUN npm i -g cross-env && npm cache clean
 WORKDIR /app/src
 EXPOSE 3000
+USER sprout
