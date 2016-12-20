@@ -10,7 +10,10 @@ RUN apk --no-cache add --update \
   autoconf \
   nasm \
   libpng-dev
-RUN npm i -g cross-env && npm cache clean
+RUN npm i -g cross-env \
+    && npm i -g feathers-cli \
+    && npm i -g sequelize-cli \
+    && npm cache clean
 WORKDIR /app/src
 EXPOSE 3000
 USER node
