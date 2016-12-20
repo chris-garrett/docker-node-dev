@@ -13,4 +13,4 @@ RUN apk --no-cache add --update \
 RUN npm i -g cross-env && npm cache clean
 WORKDIR /app/src
 EXPOSE 3000
-USER sprout
+USER node
