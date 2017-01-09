@@ -9,6 +9,7 @@ RUN apk --no-cache add --update \
   automake \
   autoconf \
   nasm \
+  python \
   libpng-dev
 RUN npm i -g cross-env \
     && npm i -g feathers-cli \
