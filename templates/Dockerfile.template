@@ -15,6 +15,11 @@ RUN npm i -g cross-env \
     && npm i -g feathers-cli \
     && npm i -g sequelize-cli \
     && npm cache clean
+RUN echo "prefix=/app/links/npm" > /home/node/.npmrc && \
+  mkdir -p /app/links/npm/bin && \
+  mkdir -p /app/links/libs && \
+  chown -R node /app
+ENV PATH /app/npm/bin:$PATH
 WORKDIR /app/src
 EXPOSE 3000
 USER node

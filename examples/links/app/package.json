@@ -1,0 +1,24 @@
+{
+  "name": "links",
+  "version": "1.0.0",
+  "description": "Example for testing npm link",
+  "main": "lib/index.js",
+  "scripts": {
+    "lib-link": "cd /app/links/libs/clone && npm link",
+    "app-link": "cd /app/src && npm link clone",
+    "app-install": "cd /app/src && npm install",
+    "app-start": "cd /app/src && babel-watch ./src/index.js -w ./src",
+    "start": "npm run lib-link && npm run app-link && npm run app-install && npm run app-start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-preset-node6": "^11.0.0",
+    "babel-watch": "^2.0.4"
+  },
+  "dependencies": {
+  }
+}
