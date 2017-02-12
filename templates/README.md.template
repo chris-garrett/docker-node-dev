@@ -30,11 +30,11 @@ Then in your `package.json` you can add the script steps to install and consume 
 
 ```
 "scripts": {
-  "lib-link": "cd /app/links/libs/mylib && npm link",
+  "lib-link": "cd /app/libs/mylib && npm link",
   "app-link": "cd /app/src && npm link mylib",
   "app-install": "cd /app/src && npm install",
   "app-start": "cd /app/src && babel-watch ./src/index.js -w ./src",
-  "start": "npm run lib-link && npm run app-link && npm run app-install && npm run app-start",
+  "start": "npm run app-install && npm run lib-link && npm run app-link && npm run app-start",
 },
 ```
 

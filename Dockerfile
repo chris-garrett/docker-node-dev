@@ -10,15 +10,15 @@ RUN apk --no-cache add --update \
   autoconf \
   nasm \
   python \
-  libpng-dev
-RUN npm i -g cross-env \
-    && npm i -g feathers-cli \
-    && npm i -g sequelize-cli \
-    && npm cache clean
-RUN echo "prefix=/app/links/npm" > /home/node/.npmrc && \
-  mkdir -p /app/links/npm/bin && \
-  mkdir -p /app/links/libs && \
-  chown -R node /app
+  libpng-dev \
+  && npm i -g cross-env \
+  && npm i -g feathers-cli \
+  && npm i -g sequelize-cli \
+  && npm cache clean \
+  && echo "prefix=/app/npm" > /home/node/.npmrc \
+  && mkdir -p /app/npm/bin \
+  && mkdir -p /app/libs \
+  && chown -R node /app
 ENV PATH /app/npm/bin:$PATH
 WORKDIR /app/src
 EXPOSE 3000
