@@ -4,20 +4,26 @@ IMAGE_NAME=chrisgarrett/node-dev
 
 all: build
 
-build:
+prep:
 	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/Dockerfile.template > Dockerfile
 	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/README.md.template > README.md
+	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/docker-compose.yml.template > docker-compose.yml
 
+build: prep
 	docker build --rm=true -t ${IMAGE_NAME}:${IMAGE_VERSION} .
 
 run:
-	docker run --rm -it ${IMAGE_NAME}:${IMAGE_VERSION} bash
-
-links:
-	if [ ! -d "`pwd`/examples/links/libs/clone" ]; then \
-		git clone https://github.com/pvorb/clone.git examples/links/libs/clone; \
-	fi
 	docker run --rm -it \
-		-v `pwd`/examples/links/app:/app/src \
-		-v `pwd`/examples/links/libs:/app/links/libs \
-		${IMAGE_NAME}:${IMAGE_VERSION} bash
+		-v `pwd`/examples/links/app:/work/app \
+		-v `pwd`/examples/links/libs/mylib1:/work/libs/mylib1 \
+		${IMAGE_NAME}:${IMAGE_VERSION} \
+		bash
+
+up: down
+	docker-compose -p links up
+
+down:
+	docker-compose -p links rm -f
+
+restart:
+	docker-compose -p links restart links_app

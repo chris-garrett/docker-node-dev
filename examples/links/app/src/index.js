@@ -1,9 +1,4 @@
-import clone from 'clone';
+import { Apple, Orange } from 'mylib1';
 
-const a = { foo: { bar: 'baz' } };
-const b = clone(a);
-
-a.foo.bar = 'foo';            // change a
-
-console.log('a', a);
-console.log('b', b);
+console.log('apple', Apple.name());
+console.log('orange', Orange.name());

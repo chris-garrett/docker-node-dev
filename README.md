@@ -1,41 +1,82 @@
 # docker-node-dev
 
-* Node development image based on alpine-node 6.9.1
+* Node development image
 
-## Versions
-- alpine-node 6.9.1
+This image is NOT meant for production, its for rapid javascript development.
+
+## Versions / packages
+* chrisgarrett/node:6.9.1 -> (node:6.9.1-alpine)
+* cross-env
+* feathers-cli
+* sequelize-cli
 
 ## Usage
 
-```docker run --rm -v `pwd`/src:/app/src chrisgarrett/node-dev npm run start```
+### Standalone app:
 
-When your wanting to work on libraries as well as your app:
-
-A single lib folder that contains one project:
+Assumes that `app` is the directory that contains your package.json.
 ```
 docker run --rm \
-  -v `pwd`/src:/app/src \
-  -v `pwd`/../mylib:/app/links/libs/mylib \
-  chrisgarrett/node-dev npm run start
+      -v `pwd`/examples/links/app:/work/app \
+      chrisgarrett/node:6.9.1 \
+      npm start
 ```
 
-A libs folder that contains several projects:
+### App + libraries
+
+When the container loads any folders mouned in `/work/libs` will automatically
+be linked `npm link` to your app. Again, this assumes that each subfolder
+contains a package.json file. For an example see `examples/links`.
+
+1. Start your library project first
 ```
 docker run --rm \
-  -v `pwd`/src:/app/src \
-  -v `pwd`/../libs:/app/links/libs \
-  chrisgarrett/node-dev npm run start
+      -v `pwd`/examples/links/libs/mylib1:/work/app \
+      chrisgarrett/node:6.9.1 \
+      npm start
 ```
-Then in your `package.json` you can add the script steps to install and consume the links
 
+1. Next start your application mounting your library project
 ```
-"scripts": {
-  "lib-link": "cd /app/links/libs/mylib && npm link",
-  "app-link": "cd /app/src && npm link mylib",
-  "app-install": "cd /app/src && npm install",
-  "app-start": "cd /app/src && babel-watch ./src/index.js -w ./src",
-  "start": "npm run lib-link && npm run app-link && npm run app-install && npm run app-start",
-},
+docker run --rm \
+      -v `pwd`/examples/links/app:/work/app \
+      -v `pwd`/examples/links/libs/mylib1:/work/libs/mylib1 \
+      chrisgarrett/node:6.9.1 \
+      npm start
 ```
+
+#### Docker Compose
+
+Here is an example compose file:
+```
+version: '2'
+services:
+
+  app:
+    container_name: links_app
+    image: chrisgarrett/node-dev:6.9.1
+    command: npm start
+    ports:
+    - 3000:3000
+    volumes:
+    - ./examples/links/app:/work/app
+    - ./examples/links/libs/mylib1:/work/libs/mylib1
+    depends_on:
+    - mylib1
+
+  mylib1:
+    container_name: links_lib1
+    image: chrisgarrett/node-dev:6.9.1
+    command: npm start
+    volumes:
+    - ./examples/links/libs/mylib1:/work/app
+```
+
+Run with:
+```
+docker-compose -p links up
+```
+
+
 
 ## Credits
