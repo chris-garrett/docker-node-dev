@@ -23,6 +23,7 @@ RUN apk --no-cache add --update \
   && chown -R node:node /home/node /work \
   && chmod +x /entry.sh
 ENV PATH /work/npm/bin:$PATH
+ENV NODE_ENV=development
 ENTRYPOINT ["/entry.sh"]
 WORKDIR "/work/app"
 EXPOSE 3000
