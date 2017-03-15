@@ -16,7 +16,7 @@ if [ ! -z "$NPM_LIBS" ]; then
 fi
 
 # setup links
-if [ -d "$LIBS" ]; then
+if `ls -d -1 $LIBS/*/  > /dev/null 2>&1`; then
     echo "linking $LIBS"
   for fn in `ls -d -1 $LIBS/*/`; do
       BN=`basename $fn`
