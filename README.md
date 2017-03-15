@@ -2,7 +2,7 @@
 
 * Node development image
 
-This image is NOT meant for production, its for rapid javascript development.
+Node image for rapid client/server development. This image is *NOT* meant for production!
 
 ## Versions / packages
 * chrisgarrett/node:6.9.1 -> (node:6.9.1-alpine)
