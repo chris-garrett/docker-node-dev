@@ -48,6 +48,7 @@ docker run --rm \
 #### Docker Compose
 
 Here is an example compose file:
+
 ```
 version: '2'
 services:
