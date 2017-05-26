@@ -1,5 +1,5 @@
 
-IMAGE_VERSION=6.9.1
+IMAGE_VERSION=7.10.0
 IMAGE_NAME=chrisgarrett/node-dev
 
 all: build
