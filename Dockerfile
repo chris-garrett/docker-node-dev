@@ -1,6 +1,6 @@
-FROM chrisgarrett/node:6.9.1
+FROM chrisgarrett/node:7.10.0
 MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
-LABEL description="Node development image based on alpine-node 6.9.1"
+LABEL description="Node development image based on alpine-node 7.10.0"
 USER root
 ADD scripts/entry.sh /entry.sh
 RUN apk --no-cache add --update \
