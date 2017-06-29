@@ -3,7 +3,7 @@ services:
 
   app:
     container_name: links_app
-    image: chrisgarrett/node-dev:7.10.0
+    image: chrisgarrett/node-dev:8.1.2
     command: npm start
     ports:
     - 3000:3000
@@ -15,7 +15,7 @@ services:
 
   mylib1:
     container_name: links_lib1
-    image: chrisgarrett/node-dev:7.10.0
+    image: chrisgarrett/node-dev:8.1.2
     command: npm start
     volumes:
     - ./examples/links/libs/mylib1:/work/app

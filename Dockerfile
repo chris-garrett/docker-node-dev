@@ -1,6 +1,6 @@
-FROM chrisgarrett/node:7.10.0
+FROM chrisgarrett/node:8.1.2
 MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
-LABEL description="Node development image based on alpine-node 7.10.0"
+LABEL description="Node development image based on alpine-node 8.1.2"
 USER root
 ADD scripts/entry.sh /entry.sh
 RUN apk --no-cache add --update \
@@ -15,7 +15,8 @@ RUN apk --no-cache add --update \
   && npm i -g cross-env \
   && npm i -g feathers-cli \
   && npm i -g sequelize-cli \
-  && npm cache clean \
+  && npm i -g typescript \
+  && npm cache clean --force \
   # Give node a home again.
   && sed -i -e "s/^node.*/node:x:1000:1000:Linux User,,,:\/home\/node:\/bin\/bash/" /etc/passwd \
   && mkdir -p /work/npm/bin /work/libs/ /work/app \

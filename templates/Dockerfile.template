@@ -15,7 +15,8 @@ RUN apk --no-cache add --update \
   && npm i -g cross-env \
   && npm i -g feathers-cli \
   && npm i -g sequelize-cli \
-  && npm cache clean \
+  && npm i -g typescript \
+  && npm cache clean --force \
   # Give node a home again.
   && sed -i -e "s/^node.*/node:x:1000:1000:Linux User,,,:\/home\/node:\/bin\/bash/" /etc/passwd \
   && mkdir -p /work/npm/bin /work/libs/ /work/app \
