@@ -16,6 +16,7 @@ RUN apk --no-cache add --update \
   && npm i -g feathers-cli \
   && npm i -g sequelize-cli \
   && npm i -g typescript \
+  && npm i -g create-react-native-app \
   && npm cache clean --force \
   # Give node a home again.
   && sed -i -e "s/^node.*/node:x:1000:1000:Linux User,,,:\/home\/node:\/bin\/bash/" /etc/passwd \
