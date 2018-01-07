@@ -6,9 +6,6 @@ Node image for rapid client/server development. This image is *NOT* meant for pr
 
 ## Versions / packages
 * chrisgarrett/node:${IMAGE_VERSION} -> (node:${IMAGE_VERSION}-alpine)
-* cross-env
-* feathers-cli
-* sequelize-cli
 
 ## Usage
 
@@ -55,7 +52,7 @@ services:
 
   app:
     container_name: links_app
-    image: ${IMAGE_NAME}:6.9.1
+    image: ${IMAGE_NAME}:${IMAGE_VERSION}
     command: npm start
     ports:
     - 3000:3000
@@ -67,7 +64,7 @@ services:
 
   mylib1:
     container_name: links_lib1
-    image: ${IMAGE_NAME}:6.9.1
+    image: ${IMAGE_NAME}:${IMAGE_VERSION}
     command: npm start
     volumes:
     - ./examples/links/libs/mylib1:/work/app

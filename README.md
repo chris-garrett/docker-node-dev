@@ -5,10 +5,7 @@
 Node image for rapid client/server development. This image is *NOT* meant for production!
 
 ## Versions / packages
-* chrisgarrett/node:8.2.1 -> (node:8.2.1-alpine)
-* cross-env
-* feathers-cli
-* sequelize-cli
+* chrisgarrett/node:8.9.4 -> (node:8.9.4-alpine)
 
 ## Usage
 
@@ -18,7 +15,7 @@ Assumes that `app` is the directory that contains your package.json.
 ```
 docker run --rm \
       -v `pwd`/examples/links/app:/work/app \
-      chrisgarrett/node-dev:8.2.1 \
+      chrisgarrett/node-dev:8.9.4 \
       npm start
 ```
 
@@ -32,7 +29,7 @@ contains a package.json file. For an example see `examples/links`.
 ```
 docker run --rm \
       -v `pwd`/examples/links/libs/mylib1:/work/app \
-      chrisgarrett/node-dev:8.2.1 \
+      chrisgarrett/node-dev:8.9.4 \
       npm start
 ```
 
@@ -41,7 +38,7 @@ docker run --rm \
 docker run --rm \
       -v `pwd`/examples/links/app:/work/app \
       -v `pwd`/examples/links/libs/mylib1:/work/libs/mylib1 \
-      chrisgarrett/node-dev:8.2.1 \
+      chrisgarrett/node-dev:8.9.4 \
       npm start
 ```
 
@@ -55,7 +52,7 @@ services:
 
   app:
     container_name: links_app
-    image: chrisgarrett/node-dev:6.9.1
+    image: chrisgarrett/node-dev:8.9.4
     command: npm start
     ports:
     - 3000:3000
@@ -67,7 +64,7 @@ services:
 
   mylib1:
     container_name: links_lib1
-    image: chrisgarrett/node-dev:6.9.1
+    image: chrisgarrett/node-dev:8.9.4
     command: npm start
     volumes:
     - ./examples/links/libs/mylib1:/work/app

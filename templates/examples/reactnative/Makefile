@@ -5,23 +5,21 @@ all:
 
 create:
 	docker run --rm -it \
-    -v `pwd`:/work \
+		-v `pwd`/:/work/app \
 		${IMAGE_NAME}:${IMAGE_VERSION} \
-		rm .gitkeep && \
-		create-react-native-app AwesomeProject \
-		&& mv AwesomeProject src
+		bash -c "yarn add create-react-native-app && npx create-react-native-app AwesomeProject && mv AwesomeProject src"
 
 start:
 	docker run --rm -it \
 		-p 19000:19000 \
-    -v `pwd`/src:/work/app \
+		-v `pwd`/src:/work/app \
 		-e REACT_NATIVE_PACKAGER_HOSTNAME=EXTERNAL_HOSTNAME \
 		${IMAGE_NAME}:${IMAGE_VERSION} \
 		npm start
 
 bash:
 	docker run --rm -it \
-    -v `pwd`/src:/work/app \
+		-v `pwd`/src:/work/app \
 		${IMAGE_NAME}:${IMAGE_VERSION} \
 		bash
 
