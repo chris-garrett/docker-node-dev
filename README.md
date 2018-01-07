@@ -1,4 +1,4 @@
-# docker-node-dev
+# chrisgarrett/node-dev
 
 * Node development image
 

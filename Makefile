@@ -5,9 +5,11 @@ IMAGE_NAME=chrisgarrett/node-dev
 all: build
 
 prep:
-	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/Dockerfile.template > Dockerfile
-	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/README.md.template > README.md
-	VERSION=${IMAGE_VERSION} envsubst '$${VERSION}' < ./templates/docker-compose.yml.template > docker-compose.yml
+	IMAGE_VERSION=${IMAGE_VERSION} IMAGE_NAME=${IMAGE_NAME} envsubst '$${IMAGE_VERSION} $${IMAGE_NAME}' < ./templates/Dockerfile.template > Dockerfile
+	IMAGE_VERSION=${IMAGE_VERSION} IMAGE_NAME=${IMAGE_NAME} envsubst '$${IMAGE_VERSION} $${IMAGE_NAME}' < ./templates/README.md.template > README.md
+	IMAGE_VERSION=${IMAGE_VERSION} IMAGE_NAME=${IMAGE_NAME} envsubst '$${IMAGE_VERSION} $${IMAGE_NAME}' < ./templates/docker-compose.yml.template > docker-compose.yml
+	IMAGE_VERSION=${IMAGE_VERSION} IMAGE_NAME=${IMAGE_NAME} envsubst '$${IMAGE_VERSION} $${IMAGE_NAME}' < ./templates/examples/feathers/Makefile > examples/feathers/Makefile
+	IMAGE_VERSION=${IMAGE_VERSION} IMAGE_NAME=${IMAGE_NAME} envsubst '$${IMAGE_VERSION} $${IMAGE_NAME}' < ./templates/examples/reactnative/Makefile > examples/reactnative/Makefile
 
 build: prep
 	docker build --rm=true -t ${IMAGE_NAME}:${IMAGE_VERSION} .
