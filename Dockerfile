@@ -1,6 +1,6 @@
-FROM chrisgarrett/node:8.9.4
+FROM chrisgarrett/node:10.9.0
 MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
-LABEL description="Node development image based on alpine-node 8.9.4"
+LABEL description="Node development image based on alpine-node 10.9.0"
 
 USER root
 

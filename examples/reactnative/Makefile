@@ -6,7 +6,7 @@ all:
 create:
 	docker run --rm -it \
 		-v `pwd`/:/work/app \
-		chrisgarrett/node-dev:8.9.4 \
+		chrisgarrett/node-dev:10.9.0 \
 		bash -c "yarn add create-react-native-app && npx create-react-native-app AwesomeProject && mv AwesomeProject src"
 
 start:
@@ -14,13 +14,13 @@ start:
 		-p 19000:19000 \
 		-v `pwd`/src:/work/app \
 		-e REACT_NATIVE_PACKAGER_HOSTNAME=EXTERNAL_HOSTNAME \
-		chrisgarrett/node-dev:8.9.4 \
+		chrisgarrett/node-dev:10.9.0 \
 		npm start
 
 bash:
 	docker run --rm -it \
 		-v `pwd`/src:/work/app \
-		chrisgarrett/node-dev:8.9.4 \
+		chrisgarrett/node-dev:10.9.0 \
 		bash
 
 clean:
