@@ -6,19 +6,19 @@ all:
 create:
 	docker run --rm -it \
     -v `pwd`/src:/work/app \
-		chrisgarrett/node-dev:10.9.0 \
+		chrisgarrett/node-dev:12.4.0 \
 		feathers g app
 
 start:
 	docker run --rm -it \
     -v `pwd`/src:/work/app \
-		chrisgarrett/node-dev:10.9.0 \
+		chrisgarrett/node-dev:12.4.0 \
 		npm start
 
 bash:
 	docker run --rm -it \
     -v `pwd`/src:/work/app \
-		chrisgarrett/node-dev:10.9.0 \
+		chrisgarrett/node-dev:12.4.0 \
 		bash
 
 clean:

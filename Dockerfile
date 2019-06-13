@@ -1,6 +1,6 @@
-FROM chrisgarrett/node:10.9.0
+FROM chrisgarrett/node:12.4.0
 MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
-LABEL description="Node development image based on alpine-node 10.9.0"
+LABEL description="Node development image based on alpine-node 12.4.0"
 
 USER root
 
@@ -18,6 +18,7 @@ RUN apk --no-cache add --update \
   python \
   libpng-dev \
   && npm i -g npx \ 
+  && npm i -g yarn \ 
   && npm cache clean --force \
   && sed -i -e "s/^node.*/node:x:1000:1000:Linux User,,,:\/home\/node:\/bin\/bash/" /etc/passwd \
   && mkdir -p /work/npm/bin /work/libs/ /work/app \
