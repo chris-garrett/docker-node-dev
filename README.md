@@ -5,7 +5,7 @@
 Node image for rapid client/server development. This image is *NOT* meant for production!
 
 ## Versions / packages
-* chrisgarrett/node:10.9.0 -> (node:10.9.0-alpine)
+* chrisgarrett/node:12.4.0 -> (node:12.4.0-alpine)
 
 ## Usage
 
@@ -15,7 +15,7 @@ Assumes that `app` is the directory that contains your package.json.
 ```
 docker run --rm \
       -v `pwd`/examples/links/app:/work/app \
-      chrisgarrett/node-dev:10.9.0 \
+      chrisgarrett/node-dev:12.4.0 \
       npm start
 ```
 
@@ -29,7 +29,7 @@ contains a package.json file. For an example see `examples/links`.
 ```
 docker run --rm \
       -v `pwd`/examples/links/libs/mylib1:/work/app \
-      chrisgarrett/node-dev:10.9.0 \
+      chrisgarrett/node-dev:12.4.0 \
       npm start
 ```
 
@@ -38,7 +38,7 @@ docker run --rm \
 docker run --rm \
       -v `pwd`/examples/links/app:/work/app \
       -v `pwd`/examples/links/libs/mylib1:/work/libs/mylib1 \
-      chrisgarrett/node-dev:10.9.0 \
+      chrisgarrett/node-dev:12.4.0 \
       npm start
 ```
 
@@ -52,7 +52,7 @@ services:
 
   app:
     container_name: links_app
-    image: chrisgarrett/node-dev:10.9.0
+    image: chrisgarrett/node-dev:12.4.0
     command: npm start
     ports:
     - 3000:3000
@@ -64,7 +64,7 @@ services:
 
   mylib1:
     container_name: links_lib1
-    image: chrisgarrett/node-dev:10.9.0
+    image: chrisgarrett/node-dev:12.4.0
     command: npm start
     volumes:
     - ./examples/links/libs/mylib1:/work/app
