@@ -1,14 +1,16 @@
-FROM chrisgarrett/node:12.4.0
-MAINTAINER Chris Garrett (https://github.com/chris-garrett/docker-node-dev)
-LABEL description="Node development image based on alpine-node 12.4.0"
+# syntax = docker/dockerfile:experimental
+FROM node:14.17.0-alpine
+LABEL maintainer="Chris Garrett (https://github.com/chris-garrett/docker-node-dev)"
+LABEL description="Node development image based on alpine-node 14.17.0"
+
+ARG DOWNLOADS=/root/downloads
 
 USER root
 
-ENV PATH /work/npm/bin:$PATH
+ENV ENV=/home/node/.profile
 ENV NODE_ENV=development
-ADD scripts/entry.sh /entry.sh
 
-RUN apk --no-cache add --update \
+RUN apk --no-cache add -U \
   git \
   make \
   build-base \
@@ -17,17 +19,19 @@ RUN apk --no-cache add --update \
   nasm \
   python \
   libpng-dev \
-  && npm i -g npx \ 
-  && npm i -g yarn \ 
+  curl \
+  && mkdir -p $DOWNLOADS \  
+  && curl -L -o $DOWNLOADS/dockerize-alpine-linux-amd64-v0.6.1.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
+  && tar -xf $DOWNLOADS/dockerize-alpine-linux-amd64-v0.6.1.tar.gz -C /usr/local/bin \
+  && rm -fr $DOWNLOADS \  
   && npm cache clean --force \
-  && sed -i -e "s/^node.*/node:x:1000:1000:Linux User,,,:\/home\/node:\/bin\/bash/" /etc/passwd \
-  && mkdir -p /work/npm/bin /work/libs/ /work/app \
-  && echo "prefix=/work/npm" > /home/node/.npmrc \
-  && chown -R node:node /home/node /work \
-  && chmod +x /entry.sh
+  && echo "alias l='ls -laFHh'" >> /home/node/.profile \
+  && echo "set tabstop=4\nset shiftwidth=4\nset expandtab\nset nowrap\nset nobackup\nset nu" > /home/node/.vimrc \
+  && mkdir -p /work/app \
+  && chown -R node:node /work \
+  && rm -rf /var/cache/apk/*
 
 USER node
 
-ENTRYPOINT ["/entry.sh"]
 WORKDIR "/work/app"
 EXPOSE 3000
