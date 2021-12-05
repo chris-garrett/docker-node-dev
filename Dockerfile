@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:experimental
-FROM node:14.17.0-alpine
+FROM node:16.13.1-alpine
 LABEL maintainer="Chris Garrett (https://github.com/chris-garrett/docker-node-dev)"
-LABEL description="Node development image based on alpine-node 14.17.0"
+LABEL description="Node development image based on alpine-node 16.13.1"
 
 ARG DOWNLOADS=/root/downloads
 
@@ -17,7 +17,7 @@ RUN apk --no-cache add -U \
   automake \
   autoconf \
   nasm \
-  python \
+  python3 \
   libpng-dev \
   curl \
   && mkdir -p $DOWNLOADS \  

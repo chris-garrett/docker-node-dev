@@ -1,4 +1,4 @@
-export NODE_VERSION=14.17.0
+export NODE_VERSION=16.13.1
 export DOCKERIZE_VERSION=v0.6.1
 export IMAGE_VERSION=${NODE_VERSION}
 export IMAGE_NAME=chrisgarrett/node-dev
@@ -16,3 +16,6 @@ build: prep
 
 sh:
 	docker run --rm -it -v `pwd`/src:/work/app/src ${IMAGE_NAME}:${IMAGE_VERSION} sh
+
+push:
+	docker push ${IMAGE_NAME}:${IMAGE_VERSION}
