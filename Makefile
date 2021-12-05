@@ -1,4 +1,4 @@
-export NODE_VERSION=14.17.0
+export NODE_VERSION=16.13.1
 export DOCKERIZE_VERSION=v0.6.1
 export IMAGE_VERSION=${NODE_VERSION}
 export IMAGE_NAME=chrisgarrett/node-dev
