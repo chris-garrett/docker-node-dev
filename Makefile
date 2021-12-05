@@ -16,3 +16,6 @@ build: prep
 
 sh:
 	docker run --rm -it -v `pwd`/src:/work/app/src ${IMAGE_NAME}:${IMAGE_VERSION} sh
+
+push:
+	docker push ${IMAGE_NAME}:${IMAGE_VERSION}
