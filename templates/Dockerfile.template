@@ -21,8 +21,16 @@ RUN apk --no-cache add -U \
   libpng-dev \
   curl \
   && mkdir -p $DOWNLOADS \  
-  && curl -L -o $DOWNLOADS/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
-  && tar -xf $DOWNLOADS/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz -C /usr/local/bin \
+  # dockerize
+  && curl -L -o $DOWNLOADS/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+  && tar -xf $DOWNLOADS/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz -C /usr/local/bin \
+  # watchexec
+  && curl -L -o $DOWNLOADS/watchexec_${WATCHEXEC_VERSION}.tar.xz https://github.com/watchexec/watchexec/releases/download/v$WATCHEXEC_VERSION/watchexec-$WATCHEXEC_VERSION-x86_64-unknown-linux-musl.tar.xz \
+  && tar \
+  -xf $DOWNLOADS/watchexec_${WATCHEXEC_VERSION}.tar.xz \
+  --strip-components=1 \
+  -C /usr/local/bin \
+  watchexec-${WATCHEXEC_VERSION}-x86_64-unknown-linux-musl/watchexec \ 
   && rm -fr $DOWNLOADS \  
   && npm cache clean --force \
   && echo "alias l='ls -laFHh'" >> /home/node/.profile \

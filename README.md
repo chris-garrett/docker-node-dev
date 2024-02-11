@@ -1,10 +1,10 @@
 # docker-node-dev
 
-Node development image 16.13.1
+Node development image 20.11.0
 
 ## Versions / packages
-* Node 16.13.1: https://nodejs.org/en/
-- Dockerize v0.6.1: https://github.com/jwilder/dockerize
+* Node 20.11.0: https://nodejs.org/en/
+- Dockerize v0.7.0: https://github.com/jwilder/dockerize
 
 ## Usage
 
@@ -14,6 +14,6 @@ Assumes that `app` is the directory that contains your package.json.
 ```
 docker run --rm \
       -v `pwd`/examples/links/app:/work/app \
-      chrisgarrett/node-dev:16.13.1 \
+      chrisgarrett/node-dev:20.11.0 \
       npm start
 ```
